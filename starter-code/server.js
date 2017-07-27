@@ -19,7 +19,7 @@ app.use(express.static('./public'));
 
 
 // COMMENT: What is this function doing? Why do we need it? Where does it receive a request from?
-// (put your response in a comment here)
+// (RESPONSE: The proxyGitHub function takes in a request, then it runs another function that constructs the url from given constant: https://api.github.com then adds the zeroith element from request parameters. Next the authorization token is added to the request, then rthe function retuns the response. We do this because we want to keep our private token safely stored in the server files and out of the public folder where it might be tamered with by nefarious people like Keith. An addition level of abstraction is added because the token is saved as a process environment variable. The proxyGitHub function receives the request from the app.get route on line 36. Which looks get requests formatted like /github/, then sends it to proxyGitHub.)
 function proxyGitHub(request, response) {
   console.log('Routing GitHub request for', request.params[0]);
   (requestProxy({
