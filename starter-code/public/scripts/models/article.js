@@ -55,7 +55,7 @@ var app = app || {};
       }, []);
   };
 
-  // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live? (RESPONSE: the Article.numWordsByAuthor function takes in Article.allAuthors then returns an array of objects with the author name and number of words in all of the articles written by the author. Article.numWordsByAuthor function uses Article.allAuthors show on line 50 above. Article.numWordsByAuthor is called by adminView.js on line 9.
+  // : What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live? (RESPONSE: the Article.numWordsByAuthor function takes in Article.allAuthors then returns an array of objects with the author name and number of words in all of the articles written by the author. Article.numWordsByAuthor function uses Article.allAuthors show on line 50 above. Article.numWordsByAuthor is called by adminView.js on line 9.
   Article.numWordsByAuthor = () => {
     return Article.allAuthors().map(author => {
       return {
@@ -75,7 +75,7 @@ var app = app || {};
     }
   };
 
-  // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live? (RESPONSE: Article.truncateTable performs an ajax call using the app.delete route for /articles. The route deletes everything from the articles table. Article.truncateTable does not call any other functions but does take a callback function which runs on line 85. )
+  // : What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live? (RESPONSE: Article.truncateTable performs an ajax call using the app.delete route for /articles. The route deletes everything from the articles table. Article.truncateTable does not call any other functions but does take a callback function which runs on line 85. )
   Article.truncateTable = callback => {
     $.ajax({
       url: '/articles',
