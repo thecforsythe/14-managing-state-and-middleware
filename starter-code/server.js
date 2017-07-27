@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('./public'));
 
 
-// COMMENT: What is this function doing? Why do we need it? Where does it receive a request from?
+// : What is this function doing? Why do we need it? Where does it receive a request from?
 // (RESPONSE: The proxyGitHub function takes in a request, then it runs another function that constructs the url from given constant: https://api.github.com then adds the zeroith element from request parameters. Next the authorization token is added to the request, then rthe function retuns the response. We do this because we want to keep our private token safely stored in the server files and out of the public folder where it might be tamered with by nefarious people like Keith. An addition level of abstraction is added because the token is saved as a process environment variable. The proxyGitHub function receives the request from the app.get route on line 36. Which looks get requests formatted like /github/, then sends it to proxyGitHub.)
 function proxyGitHub(request, response) {
   console.log('Routing GitHub request for', request.params[0]);
@@ -29,8 +29,8 @@ function proxyGitHub(request, response) {
 }
 
 
-// COMMENT: What is this route doing? Where does it receive a request from?
-// (put your response in a comment here)
+// : What is this route doing? Where does it receive a request from?
+// (RESPONSE: Line 34 and 35, load the html page listed in the parenthesis. line 36 executes the function proxyGitHub described on line 21 above. All three can receive a request by typing in the browser. The first two can also receive a request by clicking on a link. The third is called on line 10 on repo.js in the repos.requestRepos function.)
 app.get('/new', (request, response) => response.sendFile('new.html', {root: './public'}));
 app.get('/admin', (request, response) => response.sendFile('admin.html', {root: './public'}));
 app.get('/github/*', proxyGitHub);
@@ -106,8 +106,8 @@ app.post('/articles', function(request, response) {
 });
 
 
-// COMMENT: What is this route doing? Where does it receive a request from?
-// (put your response in a comment here)
+// : What is this route doing? Where does it receive a request from?
+// (RESPONSE: The route is running a series of queries to update the database. It receives the request from an ajax call in the Article.prototype.updateRecord function in the article.js page.)
 app.put('/articles/:id', (request, response) => {
   client.query(`
     UPDATE authors
