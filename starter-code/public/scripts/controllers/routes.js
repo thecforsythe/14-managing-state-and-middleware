@@ -12,5 +12,5 @@ page('/author', '/');
 page('/author/:authorName', app.articleController.loadByAuthor, app.articleController.index);
 page('/category/:categoryName', app.articleController.loadByCategory, app.articleController.index);
 
-// COMMENT: What is this function doing?
+// : What is this function doing? (RESPONSE: The empty page function extis the middleware by telling it to stop looking for nexts.)
 page();
