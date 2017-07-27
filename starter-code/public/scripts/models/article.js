@@ -13,7 +13,7 @@ var app = app || {};
 
   // REVIEW: With ES6 arrow functions, if the function only has one parameter, you don't need parentheses.
   //         This is similar to saying Article.loadAll = function(rows).
-    // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
   Article.loadAll = rows => {
     rows.sort((a,b) => (new Date(b.publishedOn)) - (new Date(a.publishedOn)));
     Article.all = rows.map(ele => new Article(ele));
@@ -22,18 +22,18 @@ var app = app || {};
   // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
   Article.fetchAll = callback => {
     $.get('/articles')
-    .then(
-      results => {
-        Article.loadAll(results);
-        callback();
-      }
-    )
+      .then(
+        results => {
+          Article.loadAll(results);
+          callback();
+        }
+      )
   };
 
   // REVIEW: We have a new method to query our DB for a specific record, based on varying criteria
   Article.findWhere = function(field, value, callback) {
     $.get('/articles/find', {field: field, val: value})
-    .then(callback)
+      .then(callback)
   };
 
   // REVIEW: A new method for gathering all of the categories
@@ -43,15 +43,15 @@ var app = app || {};
 
   Article.numWordsAll = () => {
     return Article.all.map(article => article.body.match(/\b\w+/g).length)
-                      .reduce((a, b) => a + b)
+      .reduce((a, b) => a + b)
   };
 
   Article.allAuthors = () => {
     return Article.all.map(article => article.author)
-                      .reduce((names, name) => {
-                        if (names.indexOf(name) === -1) names.push(name);
-                        return names;
-                      }, []);
+      .reduce((names, name) => {
+        if (names.indexOf(name) === -1) names.push(name);
+        return names;
+      }, []);
   };
 
   // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
@@ -60,8 +60,8 @@ var app = app || {};
       return {
         name: author,
         numWords: Article.all.filter(a => a.author === author)
-                             .map(a => a.body.match(/\b\w+/g).length)
-                             .reduce((a, b) => a + b)
+          .map(a => a.body.match(/\b\w+/g).length)
+          .reduce((a, b) => a + b)
       }
     })
   };
@@ -80,14 +80,14 @@ var app = app || {};
       url: '/articles',
       method: 'DELETE',
     })
-    .then(console.log)
-    .then(callback);
+      .then(console.log)
+      .then(callback);
   };
 
   Article.prototype.insertRecord = function(callback) {
     $.post('/articles', {author: this.author, authorUrl: this.authorUrl, body: this.body, category: this.category, publishedOn: this.publishedOn, title: this.title})
-    .then(console.log)
-    .then(callback);
+      .then(console.log)
+      .then(callback);
   };
 
   Article.prototype.deleteRecord = function(callback) {
@@ -95,8 +95,8 @@ var app = app || {};
       url: `/articles/${this.article_id}`,
       method: 'DELETE'
     })
-    .then(console.log)
-    .then(callback);
+      .then(console.log)
+      .then(callback);
   };
 
   Article.prototype.updateRecord = function(callback) {
@@ -113,8 +113,8 @@ var app = app || {};
         author_id: this.author_id
       }
     })
-    .then(console.log)
-    .then(callback);
+      .then(console.log)
+      .then(callback);
   };
 
   module.Article = Article;
