@@ -4,7 +4,8 @@ var app = app || {};
 (function(module) {
   const articleView = {};
 
-  // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // : What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  //render sets up the handlebasr.compile function as a variable (template) then adjusts the daysAgo, and publishStatus of the article, and uses marked.js to parse the body for markdown styling.  Then it returns the html returned from the handlebars function of the article. This is called on line 57 below
   const render = function(article) {
     let template = Handlebars.compile($('#article-template').text());
 
